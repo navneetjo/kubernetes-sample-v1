@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "voting-ingress"
+  namespace: "default"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/target-type: instance
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/subnets : subnet-09890d5f3e90afc88,subnet-0a0292cc95d522cef
+  labels:
+    app: demo-voting-app
+    name: voting-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: "voting-service"
+              servicePort: 80

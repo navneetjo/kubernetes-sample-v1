@@ -5,7 +5,7 @@ metadata:
     app: demo-voting-app
     name: voting-app-ingress
   name: voting-app-ingress
-  namespace: default
+  namespace: voting-app-namespace
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/target-type: instance
@@ -18,7 +18,7 @@ spec:
     - 
       http: 
         paths: 
-        - path: /
+        - path: /*
           backend: 
             serviceName: voting-service
             servicePort: 80

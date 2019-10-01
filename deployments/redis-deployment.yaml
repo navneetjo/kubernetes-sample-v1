@@ -5,6 +5,8 @@ metadata:
   namespace: voting-app-namespace
   labels:
     app: demo-voting-app
+  annotations:
+    iam.amazonaws.com/role: arn:aws:iam::<account-id>:role/nodes.dev.k8s.local
 spec:
   replicas: 1
   selector:
@@ -21,6 +23,6 @@ spec:
     spec:
       containers:
       - name: redis
-        image: redis
+        image: <account-id>.dkr.ecr.us-east-1.amazonaws.com/voting-app-namespace/redis
         ports:
                 - containerPort: 6379
